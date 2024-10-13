@@ -12,6 +12,15 @@
   <div>
     <button @click="toggleShowLorem">{{ buttonLabel }}</button>
   </div>
+  <br />
+  <!-- Mouse events -->
+  <!-- define $event to access the event object with other arguments -->
+  <div class="box" @mouseover="handleEvent($event, 5)">mouseover</div>
+  <div class="box" @mouseleave="handleEvent">mouseleave</div>
+  <div class="box" @dblclick="handleEvent">double click</div>
+  <div class="box" @mousemove="handleMouseMove">
+    Position {{ x }} and {{ y }}
+  </div>
 </template>
 
 // SCRIPT SETUP
@@ -31,7 +40,36 @@ const toggleShowLorem = () => {
 const buttonLabel = computed(() =>
   showLorem.value ? "Hide Lorem" : "Show Lorem"
 );
+
+// Mouse events
+const handleEvent = (e, data) => {
+  console.log(e.type);
+  if (data) {
+    console.log(data);
+  }
+};
+const x = ref(0);
+const y = ref(0);
+const handleMouseMove = (e) => {
+  x.value = e.offsetX;
+  y.value = e.offsetY;
+
+  // Reset to 0 on mouse leave
+  e.target.addEventListener("mouseleave", () => {
+    x.value = 0;
+    y.value = 0;
+  });
+};
 </script>
 
 // STYLES
-<style scoped></style>
+<style scoped>
+.box {
+  padding: 100px;
+  width: 400px;
+  text-align: center;
+  background-color: antiquewhite;
+  margin: 20px;
+  display: inline-block;
+}
+</style>
