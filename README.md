@@ -14,7 +14,10 @@ An App to learn Vue 3 concepts and transition React learning into another JS Fra
 
 ## What I learnt
 
-- Lorem
+- Component structure for Vue 2 (Options API) and Vue 3 (Composition API)
+- Rendering and Conditional rendering of data from an object or array using `v-for`
+- Use Computed properties to create derived state from existing values
+- Bind basic mouse events using `v-on` or `@`
 
 ## Todo list
 
