@@ -26,12 +26,12 @@
           <MapPin class="inline-block mr-2" :size="16" />
           {{ job.location }}
         </div>
-        <a
-          :href="'/job/' + job.id"
+        <RouterLink
+          :to="'/job/' + job.id"
           class="h-[36px] bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
         >
           Read More
-        </a>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@
 
 <script setup>
 import { defineProps, ref, computed } from "vue";
+import { RouterLink } from "vue-router";
 import { MapPin } from "lucide-vue-next";
 
 const showFullDescription = ref(false);
