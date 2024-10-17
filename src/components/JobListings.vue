@@ -54,7 +54,7 @@ const state = reactive({
 // Fetch the job listings from the API
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:9001/jobs");
+    const response = await axios.get("/api/jobs");
     state.jobs = response.data;
   } catch (error) {
     console.error(error);

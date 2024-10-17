@@ -1,4 +1,5 @@
 <template>
+  <BackButton />
   <!--  If isLoading is false, show the section-->
   <section v-if="!state.isLoading" class="bg-green-50">
     <div class="container m-auto py-10 px-6">
@@ -84,11 +85,14 @@
 </template>
 
 <script setup>
+// Imports
 import { reactive, onMounted } from "vue";
 import { useRoute, RouterLink } from "vue-router";
 import { MapPin } from "lucide-vue-next";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
+// Components
+import BackButton from "../components/BackButton.vue";
 
 // Get the current route id
 const route = useRoute();
@@ -102,7 +106,7 @@ const state = reactive({
 // Fetch the job listings from the API
 onMounted(async () => {
   try {
-    const response = await axios.get(`http://localhost:9001/jobs/${jobId}`);
+    const response = await axios.get(`/api/jobs/${jobId}`);
     state.job = response.data;
   } catch (error) {
     console.error("Error fetching job", error);
