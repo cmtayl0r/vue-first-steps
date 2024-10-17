@@ -23,16 +23,12 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, onMounted } from "vue";
 import { RouterLink } from "vue-router";
+import axios from "axios";
 
 // CHILD COMPONENTS
 import JobListing from "./JobListing.vue";
-
-// import job data
-import jobData from "../../data/jobs.json";
-// make jobs reactive by wrapping in ref
-const jobs = ref(jobData);
 
 defineProps({
   limit: Number,
@@ -40,6 +36,20 @@ defineProps({
     type: Boolean,
     default: false,
   },
+});
+
+// DATA
+// Set up a reactive reference to store the job listings
+// Have an empty array as the initial value
+const jobs = ref([]);
+// Fetch the job listings from the API
+onMounted(async () => {
+  try {
+    const response = await axios.get("http://localhost:9001/jobs");
+    jobs.value = response.data;
+  } catch (error) {
+    console.error(error);
+  }
 });
 </script>
 
