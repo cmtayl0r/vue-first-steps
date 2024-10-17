@@ -223,7 +223,7 @@ const handleSubmit = async () => {
 
   try {
     // Update job by ID using PUT request
-    const response = await axios.put(`/api/jobs/`, updatedJob);
+    const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
     // Success Toast
     toast.success("Job updated successfully");
     router.push(`/jobs/${response.data.id}`);
