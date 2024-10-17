@@ -97,6 +97,20 @@
         "contactEmail": "email@email.com",
         "contactPhone": "151651561651561561"
       }
+    },
+    {
+      "id": "852d",
+      "type": "Full-Time",
+      "title": "Test 2 job",
+      "description": "df wefewf wef wef ewf wef",
+      "salary": "$50K - $60K",
+      "location": "Berlin",
+      "company": {
+        "name": "ew we fwe fwe",
+        "description": " fwef ew fwef ew",
+        "contactEmail": "email@email.com",
+        "contactPhone": "546156156156156"
+      }
     }
   ]
 }

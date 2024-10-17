@@ -173,6 +173,7 @@
 import { reactive } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 // Form data
 // bind form inputs to reactive object with v-model
@@ -191,6 +192,8 @@ const form = reactive({
   },
 });
 
+const toast = useToast();
+
 // Use Vue Router for navigation
 const router = useRouter();
 
@@ -207,11 +210,13 @@ const handleSubmit = async () => {
   try {
     // Post new job to API
     const response = await axios.post(`/api/jobs/`, newJob);
-    // TODO: show toast message (success)
+    // Success Toast
+    toast.success("Job added successfully");
     router.push(`/jobs/${response.data.id}`);
-    // TODO: show toast message (error)
   } catch (error) {
     console.error("Error fetching job", error);
+    // Error Toast
+    toast.error("Error adding job");
   }
 };
 </script>

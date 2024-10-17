@@ -2,10 +2,10 @@
 
 ## Description
 
-An App to learn Vue 3 concepts and transition React learning into another JS Framework.
+A basic Job listing app that lists jobs from an API, with the ability to add, edit and delete job postings. This app's intent is to learn Vue 3 concepts and transition React learning into another JS Framework.
 
 > [!NOTE]
-> Tutorial initiated project, sourced from Net Ninja and Traversy Media
+> Tutorial initiated project, mash-up from Net Ninja and Traversy Media
 
 ## Tech Stack
 
@@ -14,6 +14,7 @@ An App to learn Vue 3 concepts and transition React learning into another JS Fra
 - Tailwind CSS for styling
 - [JSON-server][1] and [Axios][3] for fake API data
 - [vue-spinner][2] for loading state of reactive data (Jobs)
+- [Vue Toastification][4] for success and error toast components when adding a job
 
 ## What I learnt
 
@@ -34,3 +35,4 @@ An App to learn Vue 3 concepts and transition React learning into another JS Fra
 [1]: https://www.npmjs.com/package/json-server/v/0.17.4
 [2]: https://www.npmjs.com/package/vue-spinner
 [3]: https://axios-http.com/docs/intro
+[4]: https://vue-toastification.maronato.dev/
