@@ -69,6 +69,7 @@
               >Edit Job</RouterLink
             >
             <button
+              @click="deleteJob"
               class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
             >
               Delete Job
@@ -86,16 +87,20 @@
 
 <script setup>
 // Imports
+// ----------------------------------------------------------------
 import { reactive, onMounted } from "vue";
-import { useRoute, RouterLink } from "vue-router";
+import { useRoute, RouterLink, useRouter } from "vue-router";
 import { MapPin } from "lucide-vue-next";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
-// Components
 import BackButton from "../components/BackButton.vue";
+import { useToast } from "vue-toastification";
 
-// Get the current route id
-const route = useRoute();
+// Setup Variables and State
+// ----------------------------------------------------------------
+const router = useRouter();
+const toast = useToast();
+const route = useRoute(); // Get the current route id
 const jobId = route.params.id;
 
 // Fetch the job data
@@ -103,6 +108,10 @@ const state = reactive({
   job: {},
   isLoading: true,
 });
+
+// Lifecycle Hooks
+// ----------------------------------------------------------------
+
 // Fetch the job listings from the API
 onMounted(async () => {
   try {
@@ -114,6 +123,25 @@ onMounted(async () => {
     state.isLoading = false;
   }
 });
+
+// Methods
+// ----------------------------------------------------------------
+
+const deleteJob = async () => {
+  try {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this job?"
+    );
+    if (confirmDelete) {
+      await axios.delete(`/api/jobs/${state.job.id}`);
+      toast.success("Job deleted successfully");
+      router.push("/jobs");
+    }
+  } catch (error) {
+    console.error("Error deleting job", error);
+    toast.error("Error deleting job");
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
