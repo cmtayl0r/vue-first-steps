@@ -25,6 +25,7 @@ An App to learn Vue 3 concepts and transition React learning into another JS Fra
 - Bind basic mouse events using `v-on` or `@`.
 - Two-way binding form inputs with `v-model`.
 - Basic Vue router setup using `vue-router`. Including dynamic id's for sub pages (jobs/:id).
+- Using a API URL proxy for JSON-server in the `vite.config.js`.
 
 ## Todo list
 
