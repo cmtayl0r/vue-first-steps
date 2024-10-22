@@ -88,41 +88,23 @@
 <script setup>
 // Imports
 // ----------------------------------------------------------------
-import { reactive, onMounted } from "vue";
+import useJobDetail from "../hooks/useJobDetail";
 import { useRoute, RouterLink, useRouter } from "vue-router";
 import { MapPin } from "lucide-vue-next";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import axios from "axios";
 import BackButton from "../components/BackButton.vue";
 import { useToast } from "vue-toastification";
+const router = useRouter();
+const toast = useToast();
 
 // Setup Variables and State
 // ----------------------------------------------------------------
-const router = useRouter();
-const toast = useToast();
 const route = useRoute(); // Get the current route id
-const jobId = route.params.id;
+const jobId = route.params.id; // Correcting the id variable
 
-// Fetch the job data
-const state = reactive({
-  job: {},
-  isLoading: true,
-});
-
-// Lifecycle Hooks
-// ----------------------------------------------------------------
-
-// Fetch the job listings from the API
-onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/jobs/${jobId}`);
-    state.job = response.data;
-  } catch (error) {
-    console.error("Error fetching job", error);
-  } finally {
-    state.isLoading = false;
-  }
-});
+// State returned by the composable
+const state = useJobDetail(jobId);
 
 // Methods
 // ----------------------------------------------------------------

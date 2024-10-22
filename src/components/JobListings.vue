@@ -28,13 +28,17 @@
 </template>
 
 <script setup>
-import { reactive, defineProps, onMounted } from "vue";
+import useJobs from "../hooks/useJobs";
+import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
-import axios from "axios";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-
-// CHILD COMPONENTS
 import JobListing from "./JobListing.vue";
+
+// Setup Variables and State
+// ----------------------------------------------------------------
+
+// State returned by the composable
+const state = useJobs(); 
 
 defineProps({
   limit: Number,
@@ -44,24 +48,6 @@ defineProps({
   },
 });
 
-// DATA
-// Set up a reactive reference to store the job listings
-// Have an empty array as the initial value
-const state = reactive({
-  jobs: [],
-  isLoading: true,
-});
-// Fetch the job listings from the API
-onMounted(async () => {
-  try {
-    const response = await axios.get("/api/jobs");
-    state.jobs = response.data;
-  } catch (error) {
-    console.error(error);
-  } finally {
-    state.isLoading = false;
-  }
-});
 </script>
 
 <style lang="scss" scoped></style>

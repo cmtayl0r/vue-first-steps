@@ -45,6 +45,7 @@ import { MapPin } from "lucide-vue-next";
 const showFullDescription = ref(false);
 
 const props = defineProps({
+  // the object is data from the parent component which is the job listing data
   job: Object,
 });
 
